@@ -1,0 +1,10 @@
+//
+// Created by ursbe on 08.08.2023.
+//
+
+#ifndef MULTIPLICATIVEPERSISTENCE_MPTYPE_H
+#define MULTIPLICATIVEPERSISTENCE_MPTYPE_H
+
+typedef unsigned long long MultiPers;
+
+#endif //MULTIPLICATIVEPERSISTENCE_MPTYPE_H

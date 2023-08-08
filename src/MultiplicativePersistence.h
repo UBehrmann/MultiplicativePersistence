@@ -5,10 +5,11 @@
 #ifndef MULTIPLICATIVEPERSISTENCE_MULTIPLICATIVEPERSISTENCE_H
 #define MULTIPLICATIVEPERSISTENCE_MULTIPLICATIVEPERSISTENCE_H
 
+#include "MPType.h"
+
 #define STEP_TO_DO ULLONG_MAX
 #define UPDATE_CONSOLE_EVERY_X_STEPS 100000
 
-typedef unsigned long long MultiPers;
 
 MultiPers MultiplicativePersistence(MultiPers number);
 

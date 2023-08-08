@@ -6,8 +6,7 @@
 #define MULTIPLICATIVEPERSISTENCE_CONSOLEOUTPUT_H
 
 #include <vector>
-
-typedef unsigned long long MultiPers;
+#include "MPType.h"
 
 /**
  * Shows the current stage in the console
