@@ -10,11 +10,11 @@ using namespace std;
 
 int main() {
 
-   unsigned long long number = 1; // 277777788888899; // 277 777 788 888 899 11 steps
-   unsigned long long steps = 0;
-   unsigned long long nbOfSteps = 0;
-   unsigned long long highest = 0;
-   unsigned long long highestNumber = 0;
+   MultiPers number = 1; // 277777788888899; // 277 777 788 888 899 11 steps
+   MultiPers steps = 0;
+   MultiPers nbOfSteps = 0;
+   MultiPers highest = 0;
+   MultiPers highestNumber = 0;
 
    do {
 

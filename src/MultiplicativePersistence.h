@@ -5,10 +5,10 @@
 #ifndef MULTIPLICATIVEPERSISTENCE_MULTIPLICATIVEPERSISTENCE_H
 #define MULTIPLICATIVEPERSISTENCE_MULTIPLICATIVEPERSISTENCE_H
 
-#define
+typedef unsigned long long MultiPers;
 
-unsigned long long MultiplicativePersistence(unsigned long long number);
+MultiPers MultiplicativePersistence(MultiPers number);
 
-unsigned long long addNumber(unsigned long long number);
+MultiPers addNumber(MultiPers number);
 
 #endif //MULTIPLICATIVEPERSISTENCE_MULTIPLICATIVEPERSISTENCE_H

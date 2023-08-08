@@ -7,7 +7,7 @@
 
 using namespace std;
 
-unsigned long long MultiplicativePersistence(unsigned long long number) {
+MultiPers MultiplicativePersistence(MultiPers number) {
 
    if( number <= 9){
       return 0;
@@ -16,8 +16,8 @@ unsigned long long MultiplicativePersistence(unsigned long long number) {
    }
 }
 
-unsigned long long addNumber(unsigned long long number) {
-   unsigned long long toReturn = 1;
+MultiPers addNumber(MultiPers number) {
+   MultiPers toReturn = 1;
    string strNumber = to_string(number);
 
    for (int i = 0; i < strNumber.length(); i++) {
