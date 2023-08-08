@@ -5,6 +5,8 @@
 #ifndef MULTIPLICATIVEPERSISTENCE_MULTIPLICATIVEPERSISTENCE_H
 #define MULTIPLICATIVEPERSISTENCE_MULTIPLICATIVEPERSISTENCE_H
 
+#define
+
 unsigned long long MultiplicativePersistence(unsigned long long number);
 
 unsigned long long addNumber(unsigned long long number);
