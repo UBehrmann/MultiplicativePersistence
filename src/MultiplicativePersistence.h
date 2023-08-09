@@ -6,6 +6,7 @@
 #define MULTIPLICATIVEPERSISTENCE_MULTIPLICATIVEPERSISTENCE_H
 
 #include "MPType.h"
+#include "DataManagement.h"
 
 #define STEP_TO_DO ULLONG_MAX
 #define UPDATE_CONSOLE_EVERY_X_STEPS 100000
@@ -15,6 +16,6 @@ MultiPers MultiplicativePersistence(MultiPers number);
 
 MultiPers addNumber(MultiPers number);
 
-void runMultiplicativePersistence();
+void runMultiplicativePersistence(DataManagement &dataManagement);
 
 #endif //MULTIPLICATIVEPERSISTENCE_MULTIPLICATIVEPERSISTENCE_H

@@ -29,28 +29,25 @@ MultiPers addNumber(MultiPers number) {
    return toReturn;
 }
 
-void runMultiplicativePersistence() {
+void runMultiplicativePersistence(DataManagement &data) {
 
-   vector<MultiPers> numbers;
-
-   MultiPers number = 1; // 277777788888899; // 277 777 788 888 899 11 steps
    MultiPers steps;
    MultiPers highest = 0;
 
    do {
 
-      steps = MultiplicativePersistence(number);
+      steps = MultiplicativePersistence(data.getNumber());
 
       if(steps > highest){
-         numbers.push_back(number);
+         data.addNumber(data.getNumber());
          highest = steps;
       }
 
       // Update console every X steps
-      if(number % UPDATE_CONSOLE_EVERY_X_STEPS == 0) showStage(number, numbers);
+      if(data.getNumber() % UPDATE_CONSOLE_EVERY_X_STEPS == 0) showStage(data.getNumber(), data.getNumbers());
 
-      number++;
-   } while (STEP_TO_DO > number);
+      data.numberAddOne();
+   } while (STEP_TO_DO > data.getNumber());
 
 
 }

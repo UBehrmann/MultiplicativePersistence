@@ -1,8 +1,11 @@
 #include "MultiplicativePersistence.h"
+#include "DataManagement.h"
 
 int main() {
 
-   runMultiplicativePersistence();
+   DataManagement dataManagement;
+
+   runMultiplicativePersistence(dataManagement);
 
    return 0;
 }

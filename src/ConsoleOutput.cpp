@@ -32,12 +32,12 @@ void showStage(MultiPers number, vector<MultiPers> numbers) {
    cout << "Progress: " << (static_cast<double>(number) / static_cast<double>(ULLONG_MAX)) * 100 << "%" << endl;
 }
 
-void setScreenPosition(size_t x, size_t y)
-{
+void setScreenPosition(size_t x, size_t y){
+
    COORD cursorPosition;
 
-   cursorPosition.X = x;
-   cursorPosition.Y = y;
+   cursorPosition.X = (short)x;
+   cursorPosition.Y = (short)y;
 
    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPosition);
 }

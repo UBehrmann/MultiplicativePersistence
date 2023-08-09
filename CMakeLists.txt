@@ -10,5 +10,5 @@ add_executable(MultiplicativePersistence
         src/ConsoleOutput.cpp
         src/ConsoleOutput.h
         src/MPType.h
-        src/FileManagement.cpp
-        src/FileManagement.h)
+        src/DataManagement.cpp
+        src/DataManagement.h)
