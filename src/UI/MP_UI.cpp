@@ -8,11 +8,16 @@
 
 void MP_UI::update() {
 
+   // Flags for the window
+   ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar;
+
    static DataManagement data;
    static MultiPers steps;
    static MultiPers highest = 0;
 
-   ImGui::Begin("Multiplicative Persistence");
+   ImGui::Begin("Multiplicative Persistence", nullptr, window_flags);
+
+   menuBar();
 
    steps = MultiplicativePersistence(data.getNumber());
 
@@ -34,4 +39,22 @@ void MP_UI::update() {
    ImGui::Text("Current Number:  %20llu", data.getNumber());
 
    ImGui::End();
+}
+
+void MP_UI::menuBar() {
+   if (ImGui::BeginMenuBar())
+   {
+      if (ImGui::BeginMenu("Options"))
+      {
+         // Menu Bar Options
+
+         if (ImGui::MenuItem("Save", "CTRL+S", false, true)){
+            // TODO: Save to file
+         }
+
+         ImGui::EndMenu();
+      }
+
+      ImGui::EndMenuBar();
+   }
 }

@@ -11,6 +11,9 @@ class MP_UI {
 
 public:
    static void update();
+
+private:
+   static void menuBar();
 };
 
 
