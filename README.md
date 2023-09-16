@@ -15,3 +15,8 @@ ullong_max = 18'446'744'073'709'551'615
 Current record holder for multiplicative persistence is 277'777'788'888'899 with a persistence of 11.
 
 This means if the next number isn't in the ullong_max range, I will have to change the code to use a different data type. Which can go beyond the ullong_max range.
+
+# Need to run the code
+
+- dear imgui in the same directory as the code
+- GLFW in the same directory as the code

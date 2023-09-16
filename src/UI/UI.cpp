@@ -4,6 +4,7 @@
 
 #include "UI.h"
 #include <stdexcept>
+#include "MP_UI.h"
 
 int UI::Init() {
 
@@ -45,7 +46,7 @@ void UI::Update() {
    // Main windiw which is dockable.
    mainWindow();
 
-   anotherWindow();
+   MP_UI::update();
 }
 
 void UI::Render() {
@@ -89,23 +90,6 @@ bool UI::windowShouldClose() const {
 
 void UI::pollEvents() {
    glfwPollEvents();
-}
-
-void UI::anotherWindow() {
-   ImGui::Begin("Hello, world!");
-   ImGui::Text("Input a string:");
-   // Input buffer
-   static char buf[256] = "";
-   ImGui::InputText(" ", buf, 256);
-   ImGui::Text("You wrote: %s", buf);
-
-   static unsigned int counter = 0;
-
-   ImGui::Text("Counter: %d", counter);
-
-   counter++;
-
-   ImGui::End();
 }
 
 void UI::mainWindow() {

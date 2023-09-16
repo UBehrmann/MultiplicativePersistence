@@ -23,8 +23,6 @@ public:
 
    void mainWindow();
 
-   void anotherWindow();
-
 private:
    GLFWwindow* window;
    const char* glsl_version;
