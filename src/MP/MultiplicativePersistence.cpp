@@ -5,7 +5,7 @@
 #include "MultiplicativePersistence.h"
 #include <iostream>
 #include <vector>
-#include "ConsoleOutput.h"
+#include "../UI/ConsoleOutput.h"
 
 using namespace std;
 

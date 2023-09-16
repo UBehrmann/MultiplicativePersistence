@@ -5,7 +5,7 @@
 #ifndef MULTIPLICATIVEPERSISTENCE_DATAMANAGEMENT_H
 #define MULTIPLICATIVEPERSISTENCE_DATAMANAGEMENT_H
 
-#include "MPType.h"
+#include "../MP/MPType.h"
 
 #include <vector>
 
