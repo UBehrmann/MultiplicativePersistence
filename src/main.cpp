@@ -4,13 +4,9 @@
 
 int main(int argc, char** argv) {
 
-//   DataManagement dataManagement;
-//
-//   runMultiplicativePersistence(dataManagement);
-
    UI uI;
 
-   if (uI.Init() != 0)
+   if (uI.Init("Multiplicative Persistence") != 0)
       return EXIT_FAILURE;
 
    while(uI.windowShouldClose()){

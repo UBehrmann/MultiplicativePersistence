@@ -22,7 +22,6 @@ set(IMGUI_FILES
         imgui/backends/imgui_impl_opengl3.cpp
         imgui/backends/imgui_impl_opengl3.h
 )
-
 add_executable(${PROJECT_NAME}
         src/main.cpp
         ${IMGUI_FILES}
@@ -38,13 +37,13 @@ add_executable(${PROJECT_NAME}
         src/UI/MP_UI.cpp
         src/UI/MP_UI.h
 )
-#ImGui and GLFW integration
 
+#ImGui and GLFW integration
 find_package( OpenGL REQUIRED )
 
 include_directories( ${OPENGL_INCLUDE_DIRS} )
 
-add_subdirectory( glfw imgui )
+add_subdirectory( glfw )
 
 target_include_directories( ${PROJECT_NAME}
         PRIVATE
@@ -57,4 +56,16 @@ target_link_libraries(${PROJECT_NAME}
         PRIVATE
         opengl32
         glfw
+)
+
+add_executable(
+        MultiplicativePersistenceConsole
+        src/cmdMain.cpp
+        src/MP/MultiplicativePersistence.cpp
+        src/MP/MultiplicativePersistence.h
+        src/UI/ConsoleOutput.cpp
+        src/UI/ConsoleOutput.h
+        src/MP/MPType.h
+        src/Data/DataManagement.cpp
+        src/Data/DataManagement.h
 )

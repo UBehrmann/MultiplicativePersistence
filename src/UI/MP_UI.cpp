@@ -23,16 +23,15 @@ void MP_UI::update() {
 
    data.numberAddOne();
 
-   ImGui::Text("Current Number: %llu", data.getNumber());
-   ImGui::Text("Counter: %llu", highest);
-
    std::vector<MultiPers> numbers = data.getNumbers();
 
+   // Show lowest number for each step
    for(size_t i = 0; i < numbers.size(); i++){
-      ImGui::Text("Step %zu: %llu", i, numbers[i]);
+      ImGui::Text("Step %2zu:         %20llu", i + 1, numbers[i]);
    }
 
+   // Show current number being tested
+   ImGui::Text("Current Number:  %20llu", data.getNumber());
 
    ImGui::End();
-
 }

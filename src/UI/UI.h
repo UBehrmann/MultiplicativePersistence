@@ -10,25 +10,60 @@
 #include <glfw3.h>
 
 class UI {
-
 public:
 
-   int Init();
+   /**
+    * Initializes the UI
+    * @return
+    */
+   int Init(const char* windowTitle);
+
+   /**
+    * Polls the events
+    */
    void pollEvents();
-   virtual void Update();
+
+   /**
+    * Updates the UI
+    */
+   void Update();
+
+   /**
+    * Renders the UI
+    */
    void Render();
+
+   /**
+    * Shuts down the UI
+    */
    void Shutdown();
+
+   /**
+    * Creates a new frame
+    */
    void newFrame();
+
+   /**
+    * Checks if the window should close
+    * @return true if the window should close
+    */
    [[nodiscard]] bool windowShouldClose() const;
 
+   /**
+    * Creates the main window
+    */
    void mainWindow();
 
 private:
+   // Main window
    GLFWwindow* window;
+
+   // OpenGL version
    const char* glsl_version;
+
+   // Display width and height
    int display_w, display_h;
 
 };
-
 
 #endif //MULTIPLICATIVEPERSISTENCE_UI_H

@@ -6,14 +6,14 @@
 #include <stdexcept>
 #include "MP_UI.h"
 
-int UI::Init() {
+int UI::Init(const char* windowTitle) {
 
    if (!glfwInit())
       return 1;
 
    // Create a GLFW window
    glsl_version = "#version 130";
-   window = glfwCreateWindow(1280, 720, "ImGui Example", NULL, NULL);
+   window = glfwCreateWindow(1280, 720, windowTitle, NULL, NULL);
    if (!window) {
       glfwTerminate();
       return 1;
@@ -24,8 +24,10 @@ int UI::Init() {
    glfwGetFramebufferSize(window, &display_w, &display_h);
    glViewport(0, 0, display_w, display_h);
 
+
    IMGUI_CHECKVERSION();
 
+   // Initialize ImGui
    ImGui::CreateContext();
 
    ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -77,7 +79,6 @@ void UI::newFrame() {
    ImGui_ImplOpenGL3_NewFrame();
    ImGui_ImplGlfw_NewFrame();
    ImGui::NewFrame();
-
 }
 
 bool UI::windowShouldClose() const {
@@ -93,6 +94,7 @@ void UI::pollEvents() {
 }
 
 void UI::mainWindow() {
+
    static bool* p_open = new bool(true);
 
    static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
@@ -108,14 +110,12 @@ void UI::mainWindow() {
    window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
    window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
 
-   // When using ImGuiDockNodeFlags_PassthruCentralNode, DockSpace() will render our background
-   // and handle the pass-thru hole, so we ask Begin() to not render a background.
    if (dockspace_flags & ImGuiDockNodeFlags_PassthruCentralNode)
       window_flags |= ImGuiWindowFlags_NoBackground;
 
    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
 
-   ImGui::Begin("DockSpace Demo", p_open, window_flags);
+   ImGui::Begin("Main Docker Window", p_open, window_flags);
 
    ImGui::PopStyleVar();
 
@@ -125,10 +125,9 @@ void UI::mainWindow() {
    ImGuiIO& io = ImGui::GetIO();
    if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
    {
-      ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
+      ImGuiID dockspace_id = ImGui::GetID("MainDockSpace");
       ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
    }
-
 
    if (ImGui::BeginMenuBar())
    {
