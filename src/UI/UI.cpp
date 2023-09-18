@@ -4,7 +4,8 @@
 
 #include "UI.h"
 #include <stdexcept>
-#include "MP_UI.h"
+#include "Windows/MainWindow.h"
+#include "Windows/MP_Window.h"
 
 int UI::Init(const char* windowTitle) {
 
@@ -13,15 +14,15 @@ int UI::Init(const char* windowTitle) {
 
    // Create a GLFW window
    glsl_version = "#version 130";
-   window = glfwCreateWindow(1280, 720, windowTitle, NULL, NULL);
-   if (!window) {
+   _window = glfwCreateWindow(1280, 720, windowTitle, NULL, NULL);
+   if (!_window) {
       glfwTerminate();
       return 1;
    }
 
-   glfwMakeContextCurrent(window);
+   glfwMakeContextCurrent(_window);
 
-   glfwGetFramebufferSize(window, &display_w, &display_h);
+   glfwGetFramebufferSize(_window, &display_w, &display_h);
    glViewport(0, 0, display_w, display_h);
 
 
@@ -33,46 +34,54 @@ int UI::Init(const char* windowTitle) {
    ImGuiIO& io = ImGui::GetIO(); (void)io;
    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
-   ImGui_ImplGlfw_InitForOpenGL(window, true);
+   ImGui_ImplGlfw_InitForOpenGL(_window, true);
 
    ImGui_ImplOpenGL3_Init(glsl_version);
 
    // Style and preferences
    ImGui::StyleColorsDark();
 
+   // Add windows
+   auto* mainWindow = new MainWindow();
+   windows.push_back(mainWindow);
+
+   auto* mpWindow = new MP_Window();
+   windows.push_back(mpWindow);
+
    return 0;
 }
 
 void UI::Update() {
 
-   // Main window which is dockable.
-   mainWindow();
-
-   // add your other windows here
-   MP_UI::update();
+   // Update all windows
+   for(auto& window : windows)
+      window->update();
 }
 
 void UI::Render() {
    // Check if window is nullptr
-   if(window == nullptr)
+   if(_window == nullptr)
       throw std::runtime_error("Window is nullptr");
 
    ImGui::Render();
    glClear(GL_COLOR_BUFFER_BIT);
    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-   glfwSwapBuffers(window);
+   glfwSwapBuffers(_window);
 }
 
 void UI::Shutdown() {
    // Check if window is nullptr
-   if(window == nullptr)
+   if(_window == nullptr)
       throw std::runtime_error("Window is nullptr");
+
+   for(auto& window : windows)
+      window->shutdown();
 
    ImGui_ImplOpenGL3_Shutdown();
    ImGui_ImplGlfw_Shutdown();
    ImGui::DestroyContext();
 
-   glfwDestroyWindow(window);
+   glfwDestroyWindow(_window);
    glfwTerminate();
 }
 
@@ -84,37 +93,18 @@ void UI::newFrame() {
 
 bool UI::windowShouldClose() const {
    // Check if window is nullptr
-   if(window == nullptr)
+   if(_window == nullptr)
       throw std::runtime_error("Window is nullptr");
 
-   return !glfwWindowShouldClose(window);
+   return !glfwWindowShouldClose(_window);
 }
 
 void UI::pollEvents() {
    glfwPollEvents();
 }
 
-void UI::mainWindow() {
+UI::~UI() {
+   for(auto& window : windows)
+      delete window;
 
-   // Flags for the window
-   ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoDocking;
-
-   const ImGuiViewport* viewport = ImGui::GetMainViewport();
-   ImGui::SetNextWindowPos(viewport->WorkPos);
-   ImGui::SetNextWindowSize(viewport->WorkSize);
-   ImGui::SetNextWindowViewport(viewport->ID);
-
-   window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
-   window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
-
-   ImGui::Begin("Main Docker Window", NULL, window_flags);
-
-   // Submit the DockSpace
-   if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable)
-   {
-      ImGuiID dockspace_id = ImGui::GetID("MainDockSpace");
-      ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f));
-   }
-
-   ImGui::End();
 }

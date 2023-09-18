@@ -6,7 +6,7 @@
 #define MULTIPLICATIVEPERSISTENCE_CONSOLEOUTPUT_H
 
 #include <vector>
-#include "../MP/MPType.h"
+#include "../../MP/MPType.h"
 
 /**
  * Shows the current stage in the console

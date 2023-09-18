@@ -8,9 +8,13 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 #include <glfw3.h>
+#include <vector>
+#include "Windows/ImguiWindow.h"
+
 
 class UI {
 public:
+
 
    /**
     * Initializes the UI
@@ -49,20 +53,19 @@ public:
     */
    [[nodiscard]] bool windowShouldClose() const;
 
-   /**
-    * Creates the main window
-    */
-   void mainWindow();
+   ~UI();
 
 private:
    // Main window
-   GLFWwindow* window;
+   GLFWwindow* _window;
 
    // OpenGL version
    const char* glsl_version;
 
    // Display width and height
    int display_w, display_h;
+
+   std::vector<ImguiWindow*> windows;
 
 };
 

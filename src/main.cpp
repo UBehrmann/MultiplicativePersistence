@@ -1,25 +1,15 @@
 #include "MP/MultiplicativePersistence.h"
 #include "Data/DataManagement.h"
 #include "UI/UI.h"
+#include "UI/Windows/MP_Window.h"
 
 int main(int argc, char** argv) {
 
-   DataManagement dataManagement;
-
-   dataManagement.loadFromFile();
-
-   dataManagement.addNumber(dataManagement.getNumber() + 1);
-
-   dataManagement.numberAddOne();
-
-   dataManagement.saveToFile();
-
-   return EXIT_SUCCESS;
-
-
    UI uI;
 
-   if (uI.Init("Multiplicative Persistence") != 0)
+   MP_Window mP_UI;
+
+   if (uI.Init("Multiplicative Persistence"))
       return EXIT_FAILURE;
 
    while(uI.windowShouldClose()){

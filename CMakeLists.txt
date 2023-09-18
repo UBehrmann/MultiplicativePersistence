@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
+
 project(MultiplicativePersistence)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -22,22 +23,28 @@ set(IMGUI_FILES
         imgui/backends/imgui_impl_opengl3.cpp
         imgui/backends/imgui_impl_opengl3.h
 )
+
 add_executable(${PROJECT_NAME}
         src/main.cpp
         ${IMGUI_FILES}
         src/MP/MultiplicativePersistence.cpp
         src/MP/MultiplicativePersistence.h
-        src/UI/ConsoleOutput.cpp
-        src/UI/ConsoleOutput.h
+        src/UI/ConsoleOuput/ConsoleOutput.cpp
+        src/UI/ConsoleOuput/ConsoleOutput.h
         src/MP/MPType.h
         src/Data/DataManagement.cpp
         src/Data/DataManagement.h
         src/UI/UI.cpp
         src/UI/UI.h
-        src/UI/MP_UI.cpp
-        src/UI/MP_UI.h
         src/Libs/json/json.hpp
         src/Libs/json/json_util.h
+        src/UI/UI.cpp
+        src/UI/UI.h
+        src/UI/Windows/ImguiWindow.h
+        src/UI/Windows/MainWindow.cpp
+        src/UI/Windows/MainWindow.h
+        src/UI/Windows/MP_Window.cpp
+        src/UI/Windows/MP_Window.h
 )
 
 #ImGui and GLFW integration
@@ -65,8 +72,8 @@ add_executable(
         src/cmdMain.cpp
         src/MP/MultiplicativePersistence.cpp
         src/MP/MultiplicativePersistence.h
-        src/UI/ConsoleOutput.cpp
-        src/UI/ConsoleOutput.h
+        src/UI/ConsoleOuput/ConsoleOutput.cpp
+        src/UI/ConsoleOuput/ConsoleOutput.h
         src/MP/MPType.h
         src/Data/DataManagement.cpp
         src/Data/DataManagement.h

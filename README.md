@@ -23,6 +23,8 @@ This means if the next number isn't in the ullong_max range, I will have to chan
 
 # To do
 
-- Add save and load to JSON file
 - Add vcpkg support
   - Need to wait for next clion version because vcpkg support is broken in 2020.3.1
+- Make it faster
+  - Currently the rate is linked to the update rate of the window
+  - Needs to be changed to a separate thread
