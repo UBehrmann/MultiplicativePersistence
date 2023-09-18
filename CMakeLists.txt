@@ -36,6 +36,8 @@ add_executable(${PROJECT_NAME}
         src/UI/UI.h
         src/UI/MP_UI.cpp
         src/UI/MP_UI.h
+        src/Libs/json/json.hpp
+        src/Libs/json/json_util.h
 )
 
 #ImGui and GLFW integration

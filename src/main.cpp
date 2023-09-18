@@ -4,6 +4,19 @@
 
 int main(int argc, char** argv) {
 
+   DataManagement dataManagement;
+
+   dataManagement.loadFromFile();
+
+   dataManagement.addNumber(dataManagement.getNumber() + 1);
+
+   dataManagement.numberAddOne();
+
+   dataManagement.saveToFile();
+
+   return EXIT_SUCCESS;
+
+
    UI uI;
 
    if (uI.Init("Multiplicative Persistence") != 0)
