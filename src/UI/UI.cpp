@@ -25,7 +25,6 @@ int UI::Init(const char* windowTitle) {
    glfwGetFramebufferSize(_window, &display_w, &display_h);
    glViewport(0, 0, display_w, display_h);
 
-
    IMGUI_CHECKVERSION();
 
    // Initialize ImGui
@@ -33,6 +32,10 @@ int UI::Init(const char* windowTitle) {
 
    ImGuiIO& io = ImGui::GetIO(); (void)io;
    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
+   io.Fonts->AddFontDefault();
+
+   ImGui::GetIO().Fonts->AddFontFromFileTTF("./src/UI/fonts/Roboto/Roboto-Regular.ttf", 24.0f);
 
    ImGui_ImplGlfw_InitForOpenGL(_window, true);
 
@@ -71,9 +74,13 @@ void UI::newFrame() {
 
 void UI::Update() {
 
+   ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[1]);
+
    // Update all windows
    for(auto& window : windows)
       window->update();
+
+   ImGui::PopFont();
 }
 
 void UI::Render() {

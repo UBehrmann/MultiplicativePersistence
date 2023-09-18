@@ -24,7 +24,11 @@ This means if the next number isn't in the ullong_max range, I will have to chan
 # To do
 
 - Add vcpkg support
-  - Need to wait for next clion version because vcpkg support is broken in 2020.3.1
+  - Need to wait for next clion version because vcpkg support is broken in 2020.2.2
 - Make it faster
-  - Currently the rate is linked to the update rate of the window
+  - Currently, the rate is linked to the update rate of the window
   - Needs to be changed to a separate thread
+  - tried it but getting error 3...
+- Add code to make save and load work
+- Make the MP_Window a table
+  - Done but need to align the text

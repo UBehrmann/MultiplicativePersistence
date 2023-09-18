@@ -3,36 +3,27 @@
 //
 
 #include "MP_Window.h"
-#include "imgui.h"
 #include "../../MP/MultiplicativePersistence.h"
 
-void MP_Window::update() {
+MP_Window::MP_Window() {
 
-   // Flags for the window
-   ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar;
+   data.loadFromFile();
+
+   highest = data.getNumbers().size();
+
+   window_flags = ImGuiWindowFlags_MenuBar;
+
+}
+
+void MP_Window::update() {
 
    ImGui::Begin("Multiplicative Persistence", nullptr, window_flags);
 
    menuBar();
 
-   MultiPers steps = MultiplicativePersistence(data.getNumber());
+   doMultiplicativePersistence();
 
-   if(steps > highest){
-      data.addNumber(data.getNumber());
-      highest = steps;
-   }
-
-   data.numberAddOne();
-
-   std::vector<MultiPers> numbers = data.getNumbers();
-
-   // Show lowest number for each step
-   for(size_t i = 0; i < numbers.size(); i++){
-      ImGui::Text("Step %2zu:         %20llu", i + 1, numbers[i]);
-   }
-
-   // Show current number being tested
-   ImGui::Text("Current Number:  %20llu", data.getNumber());
+   dataTable();
 
    ImGui::End();
 }
@@ -59,14 +50,51 @@ void MP_Window::menuBar() {
    }
 }
 
-MP_Window::MP_Window() {
-
-   data.loadFromFile();
-
-   highest = data.getNumbers().size();
-}
-
 void MP_Window::shutdown() {
 
    data.saveToFile();
+}
+
+void MP_Window::dataTable() {
+
+   ImGuiTableFlags flags = ImGuiTableFlags_None;
+
+   if(ImGui::BeginTable("table", 3)){
+      ImGui::TableSetupColumn("Step", flags);
+
+      ImGui::TableSetupColumn("Number", flags);
+
+      ImGui::TableHeadersRow();
+
+      std::vector<MultiPers> numbers = data.getNumbers();
+
+      for(size_t i = 0; i < numbers.size(); i++){
+         ImGui::TableNextRow();
+         ImGui::TableSetColumnIndex(0);
+         ImGui::Text("%2zu", i + 1);
+         ImGui::TableSetColumnIndex(1);
+         ImGui::Text("%20llu", numbers[i]);
+      }
+
+      // Show current number being tested
+      ImGui::TableNextRow();
+      ImGui::TableSetColumnIndex(0);
+      ImGui::Text("Current Number:");
+      ImGui::TableSetColumnIndex(1);
+      ImGui::Text("%20llu", data.getNumber());
+
+      ImGui::EndTable();
+   }
+}
+
+void MP_Window::doMultiplicativePersistence() {
+
+   MultiPers steps = MultiplicativePersistence(data.getNumber());
+
+   if(steps > highest){
+      data.addNumber(data.getNumber());
+      highest = steps;
+   }
+
+   data.numberAddOne();
 }

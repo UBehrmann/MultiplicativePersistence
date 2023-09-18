@@ -7,6 +7,7 @@
 
 #include "../src/Data/DataManagement.h"
 #include "ImguiWindow.h"
+#include "imgui.h"
 
 class MP_Window : public ImguiWindow {
 
@@ -19,10 +20,16 @@ public:
 
 private:
    void menuBar();
+   void dataTable();
+   void doMultiplicativePersistence();
+
+   ImGuiWindowFlags window_flags;
 
    DataManagement data;
 
    MultiPers highest;
+
+   ImFont* font;
 };
 
 #endif //MULTIPLICATIVEPERSISTENCE_MP_WINDOW_H
