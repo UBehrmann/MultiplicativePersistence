@@ -5,7 +5,6 @@
 #include "DataManagement.h"
 #include <fstream>
 
-
 bool DataManagement::saveToFile() {
 
    std::ofstream ofs(DATA_PATH);

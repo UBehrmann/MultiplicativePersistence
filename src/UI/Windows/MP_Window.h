@@ -25,5 +25,4 @@ private:
    MultiPers highest;
 };
 
-
 #endif //MULTIPLICATIVEPERSISTENCE_MP_WINDOW_H

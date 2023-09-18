@@ -8,7 +8,6 @@
 
 void MP_Window::update() {
 
-
    // Flags for the window
    ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar;
 

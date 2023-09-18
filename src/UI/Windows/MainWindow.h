@@ -19,5 +19,4 @@ public:
 
 };
 
-
 #endif //MULTIPLICATIVEPERSISTENCE_MAINWINDOW_H
