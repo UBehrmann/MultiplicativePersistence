@@ -11,10 +11,8 @@
 #include <vector>
 #include "Windows/ImguiWindow.h"
 
-
 class UI {
 public:
-
 
    /**
     * Initializes the UI
@@ -23,9 +21,20 @@ public:
    int Init(const char* windowTitle);
 
    /**
+    * Checks if the window should close
+    * @return true if the window should close
+    */
+   [[nodiscard]] bool windowShouldClose() const;
+
+   /**
     * Polls the events
     */
    void pollEvents();
+
+   /**
+    * Creates a new frame
+    */
+   void newFrame();
 
    /**
     * Updates the UI
@@ -42,17 +51,6 @@ public:
     */
    void Shutdown();
 
-   /**
-    * Creates a new frame
-    */
-   void newFrame();
-
-   /**
-    * Checks if the window should close
-    * @return true if the window should close
-    */
-   [[nodiscard]] bool windowShouldClose() const;
-
    ~UI();
 
 private:
@@ -65,6 +63,7 @@ private:
    // Display width and height
    int display_w, display_h;
 
+   // All windows
    std::vector<ImguiWindow*> windows;
 
 };

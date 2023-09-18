@@ -51,6 +51,24 @@ int UI::Init(const char* windowTitle) {
    return 0;
 }
 
+bool UI::windowShouldClose() const {
+   // Check if window is nullptr
+   if(_window == nullptr)
+      throw std::runtime_error("Window is nullptr");
+
+   return !glfwWindowShouldClose(_window);
+}
+
+void UI::pollEvents() {
+   glfwPollEvents();
+}
+
+void UI::newFrame() {
+   ImGui_ImplOpenGL3_NewFrame();
+   ImGui_ImplGlfw_NewFrame();
+   ImGui::NewFrame();
+}
+
 void UI::Update() {
 
    // Update all windows
@@ -83,24 +101,6 @@ void UI::Shutdown() {
 
    glfwDestroyWindow(_window);
    glfwTerminate();
-}
-
-void UI::newFrame() {
-   ImGui_ImplOpenGL3_NewFrame();
-   ImGui_ImplGlfw_NewFrame();
-   ImGui::NewFrame();
-}
-
-bool UI::windowShouldClose() const {
-   // Check if window is nullptr
-   if(_window == nullptr)
-      throw std::runtime_error("Window is nullptr");
-
-   return !glfwWindowShouldClose(_window);
-}
-
-void UI::pollEvents() {
-   glfwPollEvents();
 }
 
 UI::~UI() {
