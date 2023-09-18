@@ -20,3 +20,9 @@ This means if the next number isn't in the ullong_max range, I will have to chan
 
 - dear imgui in the same directory as the code
 - GLFW in the same directory as the code
+
+# To do
+
+- Add save and load to JSON file
+- Add vcpkg support
+  - Need to wait for next clion version because vcpkg support is broken in 2020.3.1
