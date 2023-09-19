@@ -30,6 +30,8 @@ private:
    MultiPers highest;
 
    ImFont* font;
+
+	bool startMP = false;
 };
 
 #endif //MULTIPLICATIVEPERSISTENCE_MP_WINDOW_H

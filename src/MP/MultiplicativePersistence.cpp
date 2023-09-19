@@ -48,6 +48,4 @@ void runMultiplicativePersistence(DataManagement &data) {
 
       data.numberAddOne();
    } while (STEP_TO_DO > data.getNumber());
-
-
 }

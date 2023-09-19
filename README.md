@@ -30,5 +30,6 @@ This means if the next number isn't in the ullong_max range, I will have to chan
   - Needs to be changed to a separate thread
   - tried it but getting error 3...
 - Add code to make save and load work
+  - Done but needs an interface to say where to load from and where to save to
 - Make the MP_Window a table
   - Done but need to align the text

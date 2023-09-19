@@ -19,9 +19,13 @@ void MP_Window::update() {
 
    ImGui::Begin("Multiplicative Persistence", nullptr, window_flags);
 
+	// Menu on the top left
    menuBar();
 
-   doMultiplicativePersistence();
+	// Multiplicative Persistence fonction
+	if(startMP){
+		doMultiplicativePersistence();
+	}
 
    dataTable();
 
@@ -36,12 +40,16 @@ void MP_Window::menuBar() {
          // Menu Bar Options
 
          if (ImGui::MenuItem("Save", "CTRL+S", false, true)){
-            // TODO: Save to file
+				data.saveToFile();
          }
 
          if (ImGui::MenuItem("Load", "CTRL+L", false, true)){
-            // TODO: Load from file
+				data.loadFromFile();
          }
+
+			if (ImGui::MenuItem("Start / stop", "CTRL+R", false, true)){
+				startMP = !startMP;
+			}
 
          ImGui::EndMenu();
       }
@@ -60,6 +68,7 @@ void MP_Window::dataTable() {
    ImGuiTableFlags flags = ImGuiTableFlags_None;
 
    if(ImGui::BeginTable("table", 3)){
+
       ImGui::TableSetupColumn("Step", flags);
 
       ImGui::TableSetupColumn("Number", flags);
@@ -68,19 +77,20 @@ void MP_Window::dataTable() {
 
       std::vector<MultiPers> numbers = data.getNumbers();
 
+		// Show the lowest number for each step number
       for(size_t i = 0; i < numbers.size(); i++){
          ImGui::TableNextRow();
-         ImGui::TableSetColumnIndex(0);
+			ImGui::TableNextColumn();
          ImGui::Text("%2zu", i + 1);
-         ImGui::TableSetColumnIndex(1);
+			ImGui::TableNextColumn();
          ImGui::Text("%20llu", numbers[i]);
       }
 
       // Show current number being tested
       ImGui::TableNextRow();
-      ImGui::TableSetColumnIndex(0);
+		ImGui::TableNextColumn();
       ImGui::Text("Current Number:");
-      ImGui::TableSetColumnIndex(1);
+		ImGui::TableNextColumn();
       ImGui::Text("%20llu", data.getNumber());
 
       ImGui::EndTable();
