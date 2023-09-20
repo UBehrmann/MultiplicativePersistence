@@ -18,7 +18,12 @@ public:
     * Initializes the UI
     * @return
     */
-   int Init(const char* windowTitle);
+   int init(const char* windowTitle);
+
+	/**
+	 * Adds all windows used in the program
+	 */
+	void adddWindows();
 
    /**
     * Checks if the window should close

@@ -13,7 +13,7 @@ public:
 
    ~MainWindow() override = default;
 
-   void update() override;
+   void update(bool* visible) override;
 
    void shutdown() override;
 

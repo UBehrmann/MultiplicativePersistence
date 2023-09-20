@@ -7,7 +7,7 @@
 #include "Windows/MainWindow.h"
 #include "Windows/MP_Window.h"
 
-int UI::Init(const char* windowTitle) {
+int UI::init(const char* windowTitle) {
 
    if (!glfwInit())
       return 1;
@@ -44,12 +44,7 @@ int UI::Init(const char* windowTitle) {
    // Style and preferences
    ImGui::StyleColorsDark();
 
-   // Add windows
-   auto* mainWindow = new MainWindow();
-   windows.push_back(mainWindow);
-
-   auto* mpWindow = new MP_Window();
-   windows.push_back(mpWindow);
+	adddWindows();
 
    return 0;
 }
@@ -114,4 +109,15 @@ UI::~UI() {
    for(auto& window : windows)
       delete window;
 
+}
+
+void UI::adddWindows() {
+
+	// Add main window which is the background of all other windows
+	auto* mainWindow = new MainWindow();
+	windows.push_back(mainWindow);
+
+	// Add Multiplicative Persistence window
+	auto* mpWindow = new MP_Window();
+	windows.push_back(mpWindow);
 }

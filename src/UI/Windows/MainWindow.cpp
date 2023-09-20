@@ -5,7 +5,10 @@
 #include "MainWindow.h"
 #include "imgui.h"
 
-void MainWindow::update() {
+void MainWindow::update(bool* visible) {
+
+	// Always show this window
+	visible = reinterpret_cast<bool *>(true);
 
    // Main window which is dockable.
    // Flags for the window
@@ -19,7 +22,7 @@ void MainWindow::update() {
    window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
    window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
 
-   ImGui::Begin("Main Docker Window", NULL, window_flags);
+   ImGui::Begin("Main Docker Window", visible, window_flags);
 
    // Submit the DockSpace
    if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable)

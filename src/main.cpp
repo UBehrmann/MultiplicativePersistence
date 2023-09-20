@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
 
    MP_Window mP_UI;
 
-   if (uI.Init("Multiplicative Persistence"))
+   if (uI.init("Multiplicative Persistence"))
       return EXIT_FAILURE;
 
    while(uI.windowShouldClose()){

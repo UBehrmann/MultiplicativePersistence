@@ -15,9 +15,12 @@ MP_Window::MP_Window() {
 
 }
 
-void MP_Window::update() {
+void MP_Window::update(bool* visible) {
 
-   ImGui::Begin("Multiplicative Persistence", nullptr, window_flags);
+	// For debugging purposes
+	visible = reinterpret_cast<bool *>(true);
+
+   ImGui::Begin("Multiplicative Persistence", visible, window_flags);
 
 	// Menu on the top left
    menuBar();

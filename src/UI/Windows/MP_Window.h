@@ -14,7 +14,7 @@ class MP_Window : public ImguiWindow {
 public:
    MP_Window();
 
-   void update() override;
+   void update(bool* visible) override;
 
    void shutdown() override;
 
