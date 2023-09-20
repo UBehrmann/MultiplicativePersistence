@@ -73,7 +73,7 @@ void UI::Update() {
 
    // Update all windows
    for(auto& window : windows)
-      window->update();
+      window->update(reinterpret_cast<bool *>(true));
 
    ImGui::PopFont();
 }
