@@ -29,8 +29,6 @@ private:
 
    MultiPers highest;
 
-   ImFont* font;
-
 	bool startMP = false;
 };
 
