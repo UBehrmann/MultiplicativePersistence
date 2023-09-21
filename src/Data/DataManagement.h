@@ -29,9 +29,9 @@ public:
 
    void addNumber(MultiPers number);
 
-   bool saveToFile();
+   bool save();
 
-   bool loadFromFile();
+   bool load();
 
 	// For JSON convertion
 	NLOHMANN_DEFINE_TYPE_INTRUSIVE(DataManagement, number, numbers)

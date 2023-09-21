@@ -30,4 +30,22 @@
     std::stringstream s;  s << p; return s.str();\
   }
 
+  // save template
+template<typename T>
+  bool saveToFile(const T& data, const std::string& path) {
+
+	  std::ofstream ofs(path);
+	  if (!ofs) return false;
+	  ofs << std::setw(4) << data;
+	  return true;
+  }
+template<typename T>
+bool loadFromFile(T& data, const std::string& path) {
+
+	std::ifstream ifs(path);
+	if (!ifs) return false;
+	ifs >> data;
+	return true;
+}
+
 #endif //MULTIPLICATIVEPERSISTENCE_JSON_UTIL_H

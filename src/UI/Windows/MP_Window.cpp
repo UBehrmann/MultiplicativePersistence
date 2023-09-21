@@ -7,7 +7,7 @@
 
 MP_Window::MP_Window() {
 
-   data.loadFromFile();
+   data.load();
 
    highest = data.getNumbers().size();
 
@@ -43,11 +43,11 @@ void MP_Window::menuBar() {
          // Menu Bar Options
 
          if (ImGui::MenuItem("Save", "CTRL+S", false, true)){
-				data.saveToFile();
+				data.save();
          }
 
          if (ImGui::MenuItem("Load", "CTRL+L", false, true)){
-				data.loadFromFile();
+				data.load();
          }
 
 			if (ImGui::MenuItem("Start / stop", "CTRL+R", false, true)){
@@ -63,7 +63,7 @@ void MP_Window::menuBar() {
 
 void MP_Window::shutdown() {
 
-   data.saveToFile();
+   data.save();
 }
 
 void MP_Window::dataTable() {

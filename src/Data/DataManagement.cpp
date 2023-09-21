@@ -4,21 +4,16 @@
 
 #include "DataManagement.h"
 #include <fstream>
+#include "../Libs/json/json_util.h"
 
-bool DataManagement::saveToFile() {
+bool DataManagement::save() {
 
-   std::ofstream ofs(DATA_PATH);
-   if (!ofs) return false;
-   ofs << std::setw(4) << *(this);
-   return true;
+	return saveToFile(*(this), DATA_PATH);
 }
 
-bool DataManagement::loadFromFile() {
+bool DataManagement::load() {
 
-   std::ifstream ifs(DATA_PATH);
-   if (!ifs) return false;
-   ifs >> *(this);
-   return true;
+	return loadFromFile(*(this), DATA_PATH);
 }
 
 const std::vector<MultiPers> &DataManagement::getNumbers() const {
