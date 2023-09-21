@@ -12,24 +12,16 @@
 
 #define DATA_PATH "./Data/data.json"
 
-struct MultiPersStruct {
-   MultiPers number;
-   std::vector<MultiPers> numbers;
-
-   NLOHMANN_DEFINE_TYPE_INTRUSIVE(MultiPersStruct, number, numbers)
-
-   JSON_DEFINE_FLUX_OPERATORS(MultiPersStruct)
-};
-
 class DataManagement {
 private:
 
-   MultiPersStruct datas;
+	MultiPers number;
+	std::vector<MultiPers> numbers;
 
 public:
    DataManagement();
 
-   const std::vector<MultiPers> &getNumbers() const;
+	const std::vector<MultiPers>& getNumbers() const;
 
    MultiPers getNumber() const;
 
@@ -41,7 +33,10 @@ public:
 
    bool loadFromFile();
 
-};
+	// For JSON convertion
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE(DataManagement, number, numbers)
 
+	JSON_DEFINE_FLUX_OPERATORS(DataManagement)
+};
 
 #endif //MULTIPLICATIVEPERSISTENCE_DATAMANAGEMENT_H

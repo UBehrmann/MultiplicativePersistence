@@ -29,7 +29,7 @@ private:
 
    MultiPers highest;
 
-	bool startMP = false;
+	bool startMP = true;
 };
 
 #endif //MULTIPLICATIVEPERSISTENCE_MP_WINDOW_H
