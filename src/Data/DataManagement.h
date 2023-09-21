@@ -5,11 +5,11 @@
 #ifndef MULTIPLICATIVEPERSISTENCE_DATAMANAGEMENT_H
 #define MULTIPLICATIVEPERSISTENCE_DATAMANAGEMENT_H
 
-#include "../MP/MPType.h"
-#include <vector>
-#include "../Libs/json/json_util.h"
 #include <iostream>
 #include <string>
+#include <vector>
+#include "../MP/MPType.h"
+#include "../Libs/json/json_util.h"
 
 class DataManagement {
 private:

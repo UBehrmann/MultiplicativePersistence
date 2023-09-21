@@ -1,13 +1,8 @@
-#include "MP/MultiplicativePersistence.h"
-#include "Data/DataManagement.h"
 #include "UI/UI.h"
-#include "UI/Windows/MP_Window.h"
 
 int main(int argc, char** argv) {
 
    UI uI;
-
-   MP_Window mP_UI;
 
    if (uI.init("Multiplicative Persistence"))
       return EXIT_FAILURE;
@@ -26,8 +21,6 @@ int main(int argc, char** argv) {
    uI.Shutdown();
 
    return EXIT_SUCCESS;
-
-   return 0;
 }
 
 
