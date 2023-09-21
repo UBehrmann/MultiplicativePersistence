@@ -9,14 +9,15 @@
 #include <vector>
 #include "../Libs/json/json_util.h"
 #include <iostream>
-
-#define DATA_PATH "./Data/data.json"
+#include <string>
 
 class DataManagement {
 private:
 
 	MultiPers number;
 	std::vector<MultiPers> numbers;
+
+	std::string dataPath = "./Data/data.json";
 
 public:
    DataManagement();
@@ -29,11 +30,11 @@ public:
 
    void addNumber(MultiPers number);
 
-   bool save();
+   bool save() const;
 
    bool load();
 
-	// For JSON convertion
+	// For JSON conversion
 	NLOHMANN_DEFINE_TYPE_INTRUSIVE(DataManagement, number, numbers)
 
 	JSON_DEFINE_FLUX_OPERATORS(DataManagement)

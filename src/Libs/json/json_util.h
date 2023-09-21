@@ -1,7 +1,3 @@
-//
-// Created by ursbe on 18.09.2023.
-//
-
 #ifndef MULTIPLICATIVEPERSISTENCE_JSON_UTIL_H
 #define MULTIPLICATIVEPERSISTENCE_JSON_UTIL_H
 
@@ -30,17 +26,19 @@
     std::stringstream s;  s << p; return s.str();\
   }
 
-  // save template
+// Save JSON template
 template<typename T>
-  bool saveToFile(const T& data, const std::string& path) {
+bool saveToFile(const T &data, const std::string &path) {
 
-	  std::ofstream ofs(path);
-	  if (!ofs) return false;
-	  ofs << std::setw(4) << data;
-	  return true;
-  }
+	std::ofstream ofs(path);
+	if (!ofs) return false;
+	ofs << std::setw(4) << data;
+	return true;
+}
+
+// Load JSON template
 template<typename T>
-bool loadFromFile(T& data, const std::string& path) {
+bool loadFromFile(T &data, const std::string &path) {
 
 	std::ifstream ifs(path);
 	if (!ifs) return false;

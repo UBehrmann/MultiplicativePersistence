@@ -3,17 +3,15 @@
 //
 
 #include "DataManagement.h"
-#include <fstream>
-#include "../Libs/json/json_util.h"
 
-bool DataManagement::save() {
+bool DataManagement::save() const {
 
-	return saveToFile(*(this), DATA_PATH);
+	return saveToFile(*(this), dataPath);
 }
 
 bool DataManagement::load() {
 
-	return loadFromFile(*(this), DATA_PATH);
+	return loadFromFile(*(this), dataPath);
 }
 
 const std::vector<MultiPers> &DataManagement::getNumbers() const {
@@ -28,8 +26,8 @@ DataManagement::DataManagement() {
 	this->number = 1; // 277777788888899; // 277 777 788 888 899 11 steps
 }
 
-void DataManagement::addNumber(MultiPers number) {
-	this->numbers.push_back(number);
+void DataManagement::addNumber(MultiPers newNumber) {
+	this->numbers.push_back(newNumber);
 }
 
 void DataManagement::numberAddOne() {
