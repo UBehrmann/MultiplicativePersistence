@@ -35,7 +35,7 @@ int UI::init(const char* windowTitle) {
 
    io.Fonts->AddFontDefault();
 
-   ImGui::GetIO().Fonts->AddFontFromFileTTF("./src/UI/fonts/Roboto/Roboto-Regular.ttf", 24.0f);
+   ImGui::GetIO().Fonts->AddFontFromFileTTF("./fonts/Roboto/Roboto-Regular.ttf", 24.0f);
 
    ImGui_ImplGlfw_InitForOpenGL(_window, true);
 

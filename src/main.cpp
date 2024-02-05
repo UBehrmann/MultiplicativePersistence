@@ -1,26 +1,27 @@
 #include "UI/UI.h"
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
 
-   UI uI;
+    UI uI;
 
-   if (uI.init("Multiplicative Persistence"))
-      return EXIT_FAILURE;
+    if (uI.init("Multiplicative Persistence")){
+        return EXIT_FAILURE;
+    }
 
-   while(uI.windowShouldClose()){
-      // Poll events from mouse and keyboard
-      uI.pollEvents();
+    while (uI.windowShouldClose()) {
+        // Poll events from mouse and keyboard
+        uI.pollEvents();
 
-      uI.newFrame();
+        uI.newFrame();
 
-      uI.Update();
+        uI.Update();
 
-      uI.Render();
-   }
+        uI.Render();
+    }
 
-   uI.Shutdown();
+    uI.Shutdown();
 
-   return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 
 
