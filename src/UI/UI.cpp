@@ -14,7 +14,7 @@ int UI::init(const char* windowTitle) {
 
    // Create a GLFW window
    glsl_version = "#version 130";
-   _window = glfwCreateWindow(1280, 720, windowTitle, NULL, NULL);
+   _window = glfwCreateWindow(1280, 720, windowTitle, nullptr, nullptr);
    if (!_window) {
       glfwTerminate();
       return 1;

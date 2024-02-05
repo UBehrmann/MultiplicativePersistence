@@ -34,12 +34,12 @@ public:
    /**
     * Polls the events
     */
-   void pollEvents();
+   static void pollEvents();
 
    /**
     * Creates a new frame
     */
-   void newFrame();
+   static void newFrame();
 
    /**
     * Updates the UI
