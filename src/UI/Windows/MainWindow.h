@@ -6,16 +6,29 @@
 #define MULTIPLICATIVEPERSISTENCE_MAINWINDOW_H
 
 #include "ImguiWindow.h"
+#include "imgui.h"
+
+#define DOCKSPACE_ID 1 // Waiting for a better solution
 
 class MainWindow : public ImguiWindow {
 
+private:
+
+    ImGuiID dockspaceID;
+
 public:
 
-   ~MainWindow() override = default;
+    MainWindow();
 
-   void update(bool* visible) override;
+    ~MainWindow() override = default;
 
-   void shutdown() override;
+    void update(bool *visible) override;
+
+    void shutdown() override;
+
+    [[nodiscard]] ImGuiID getDockspaceID() const {
+        return dockspaceID;
+    }
 
 };
 

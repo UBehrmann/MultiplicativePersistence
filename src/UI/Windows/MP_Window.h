@@ -12,24 +12,28 @@
 class MP_Window : public ImguiWindow {
 
 public:
-   MP_Window();
+    MP_Window(ImGuiID dockspaceI);
 
-   void update(bool* visible) override;
+    void update(bool *visible) override;
 
-   void shutdown() override;
+    void shutdown() override;
 
 private:
-   void menuBar();
-   void dataTable();
-   void doMultiplicativePersistence();
+    void menuBar();
 
-   ImGuiWindowFlags window_flags;
+    void dataTable();
 
-   DataManagement data;
+    void doMultiplicativePersistence();
 
-   MultiPers highest;
+    ImGuiWindowFlags window_flags;
 
-	bool startMP = true;
+    DataManagement data;
+
+    MultiPers highest;
+
+    bool startMP = true;
+
+    ImGuiID dockspaceID;
 };
 
 #endif //MULTIPLICATIVEPERSISTENCE_MP_WINDOW_H

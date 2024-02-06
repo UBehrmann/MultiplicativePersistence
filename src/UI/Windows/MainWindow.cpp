@@ -5,36 +5,44 @@
 #include "MainWindow.h"
 #include "imgui.h"
 
-void MainWindow::update(bool* visible) {
+using namespace ImGui;
 
-	// Always show this window
-	visible = reinterpret_cast<bool *>(true);
 
-   // Main window which is dockable.
-   // Flags for the window
-   ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoDocking;
+void MainWindow::update(bool *visible) {
 
-   const ImGuiViewport* viewport = ImGui::GetMainViewport();
-   ImGui::SetNextWindowPos(viewport->WorkPos);
-   ImGui::SetNextWindowSize(viewport->WorkSize);
-   ImGui::SetNextWindowViewport(viewport->ID);
+    // Always show this window
+    visible = reinterpret_cast<bool *>(true);
 
-   window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
-   window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
+    // Main window which is dockable.
+    // Flags for the window
+    ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoDocking |
+                                    ImGuiWindowFlags_NoTitleBar |
+                                    ImGuiWindowFlags_NoCollapse |
+                                    ImGuiWindowFlags_NoResize |
+                                    ImGuiWindowFlags_NoMove |
+                                    ImGuiWindowFlags_NoBringToFrontOnFocus |
+                                    ImGuiWindowFlags_NoNavFocus;
 
-   ImGui::Begin("Main Docker Window", visible, window_flags);
+    const ImGuiViewport *viewport = GetMainViewport();
 
-   // Submit the DockSpace
-   if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable)
-   {
-      ImGuiID dockspace_id = ImGui::GetID("MainDockSpace");
-      ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f));
-   }
+    SetNextWindowPos(viewport->WorkPos);
+    SetNextWindowSize(viewport->WorkSize);
+    SetNextWindowViewport(viewport->ID);
 
-   ImGui::End();
+    Begin("Main Docker Window", visible, window_flags);
 
+    // Submit the DockSpace
+    if (GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable) {
+        DockSpace(DOCKSPACE_ID, ImVec2(0.0f, 0.0f));
+    }
+
+    End();
 }
 
 void MainWindow::shutdown() {
 
+}
+
+MainWindow::MainWindow() {
+    dockspaceID = DOCKSPACE_ID;
 }

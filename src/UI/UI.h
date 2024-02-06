@@ -14,62 +14,62 @@
 class UI {
 public:
 
-   /**
-    * Initializes the UI
-    * @return
-    */
-   int init(const char* windowTitle);
+    /**
+     * Initializes the UI
+     * @return
+     */
+    int init(const char *windowTitle);
 
-	/**
-	 * Adds all windows used in the program
-	 */
-	void adddWindows();
+    /**
+     * Adds all windows used in the program
+     */
+    void adddWindows();
 
-   /**
-    * Checks if the window should close
-    * @return true if the window should close
-    */
-   [[nodiscard]] bool windowShouldClose() const;
+    /**
+     * Checks if the window should close
+     * @return true if the window should close
+     */
+    [[nodiscard]] bool windowShouldClose() const;
 
-   /**
-    * Polls the events
-    */
-   static void pollEvents();
+    /**
+     * Polls the events
+     */
+    static void pollEvents();
 
-   /**
-    * Creates a new frame
-    */
-   static void newFrame();
+    /**
+     * Creates a new frame
+     */
+    static void newFrame();
 
-   /**
-    * Updates the UI
-    */
-   void Update();
+    /**
+     * Updates the UI
+     */
+    void Update();
 
-   /**
-    * Renders the UI
-    */
-   void Render();
+    /**
+     * Renders the UI
+     */
+    void Render();
 
-   /**
-    * Shuts down the UI
-    */
-   void Shutdown();
+    /**
+     * Shuts down the UI
+     */
+    void Shutdown();
 
-   ~UI();
+    ~UI();
 
 private:
-   // Main window
-   GLFWwindow* _window;
+    // Main window
+    GLFWwindow *_window;
 
-   // OpenGL version
-   const char* glsl_version;
+    // OpenGL version
+    const char *glsl_version;
 
-   // Display width and height
-   int display_w, display_h;
+    // Display width and height
+    int display_w, display_h;
 
-   // All windows
-   std::vector<ImguiWindow*> windows;
+    // All windows
+    std::vector<ImguiWindow *> windows;
 
 };
 

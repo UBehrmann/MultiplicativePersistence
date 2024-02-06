@@ -4,7 +4,7 @@ int main(int argc, char **argv) {
 
     UI uI;
 
-    if (uI.init("Multiplicative Persistence")){
+    if (uI.init("Multiplicative Persistence")) {
         return EXIT_FAILURE;
     }
 

@@ -23,5 +23,4 @@ void showStage(MultiPers number, std::vector<MultiPers> numbers);
 void setScreenPosition(size_t x = 0, size_t y = 0);
 
 
-
 #endif //MULTIPLICATIVEPERSISTENCE_CONSOLEOUTPUT_H

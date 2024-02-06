@@ -5,109 +5,107 @@
 #include "MP_Window.h"
 #include "../../MP/MultiplicativePersistence.h"
 
-MP_Window::MP_Window() {
+using namespace ImGui;
 
-   data.load();
+MP_Window::MP_Window(ImGuiID dockspaceID) : dockspaceID(dockspaceID) {
 
-   highest = data.getNumbers().size();
+    data.load();
 
-   window_flags = ImGuiWindowFlags_MenuBar;
+    highest = data.getNumbers().size();
 
+    window_flags = ImGuiWindowFlags_MenuBar;
 }
 
-void MP_Window::update(bool* visible) {
+void MP_Window::update(bool *visible) {
 
-	// For debugging purposes
-	visible = reinterpret_cast<bool *>(true);
+    SetNextWindowDockID(dockspaceID, ImGuiCond_Always);
 
-   ImGui::Begin("Multiplicative Persistence", visible, window_flags);
+    Begin("Multiplicative Persistence", visible, window_flags);
 
-	// Menu on the top left
-   menuBar();
+    // Menu on the top left
+    menuBar();
 
-	// Multiplicative Persistence fonction
-	if(startMP){
-		doMultiplicativePersistence();
-	}
+    // Multiplicative Persistence fonction
+    if (startMP) {
+        doMultiplicativePersistence();
+    }
 
-   dataTable();
+    dataTable();
 
-   ImGui::End();
+    End();
 }
 
 void MP_Window::menuBar() {
-   if (ImGui::BeginMenuBar())
-   {
-      if (ImGui::BeginMenu("Options"))
-      {
-         // Menu Bar Options
+    if (BeginMenuBar()) {
+        if (BeginMenu("Options")) {
+            // Menu Bar Options
 
-         if (ImGui::MenuItem("Save", "CTRL+S", false, true)){
-				data.save();
-         }
+            if (MenuItem("Save", "CTRL+S", false, true)) {
+                data.save();
+            }
 
-         if (ImGui::MenuItem("Load", "CTRL+L", false, true)){
-				data.load();
-         }
+            if (MenuItem("Load", "CTRL+L", false, true)) {
+                data.load();
+            }
 
-			if (ImGui::MenuItem("Start / stop", "CTRL+R", false, true)){
-				startMP = !startMP;
-			}
+            if (MenuItem("Start / stop", "CTRL+R", false, true)) {
+                startMP = !startMP;
+            }
 
-         ImGui::EndMenu();
-      }
+            EndMenu();
+        }
 
-      ImGui::EndMenuBar();
-   }
+        EndMenuBar();
+    }
 }
 
 void MP_Window::shutdown() {
 
-   data.save();
+    data.save();
 }
 
 void MP_Window::dataTable() {
 
-   ImGuiTableFlags flags = ImGuiTableFlags_None;
+    ImGuiTableFlags flags = ImGuiTableFlags_None;
 
-   if(ImGui::BeginTable("table", 3)){
+    if (BeginTable("table", 3)) {
 
-      ImGui::TableSetupColumn("Step", flags);
+        TableSetupColumn("Step", flags);
 
-      ImGui::TableSetupColumn("Number", flags);
+        TableSetupColumn("Number", flags);
 
-      ImGui::TableHeadersRow();
+        TableHeadersRow();
 
-      std::vector<MultiPers> numbers = data.getNumbers();
+        std::vector<MultiPers> numbers = data.getNumbers();
 
-		// Show the lowest number for each step number
-      for(size_t i = 0; i < numbers.size(); i++){
-         ImGui::TableNextRow();
-			ImGui::TableNextColumn();
-         ImGui::Text("%2zu", i + 1);
-			ImGui::TableNextColumn();
-         ImGui::Text("%20llu", numbers[i]);
-      }
+        // Show the lowest number for each step number
+        for (size_t i = 0; i < numbers.size(); i++) {
+            TableNextRow();
+            TableNextColumn();
+            Text("%2zu", i + 1);
+            TableNextColumn();
+            Text("%20llu", numbers[i]);
+        }
 
-      // Show current number being tested
-      ImGui::TableNextRow();
-		ImGui::TableNextColumn();
-      ImGui::Text("Current Number:");
-		ImGui::TableNextColumn();
-      ImGui::Text("%20llu", data.getNumber());
+        // Show current number being tested
+        TableNextRow();
+        TableNextColumn();
+        Text("Current Number:");
+        TableNextColumn();
+        Text("%20llu", data.getNumber());
 
-      ImGui::EndTable();
-   }
+        EndTable();
+    }
 }
 
 void MP_Window::doMultiplicativePersistence() {
 
-   MultiPers steps = MultiplicativePersistence(data.getNumber());
+    MultiPers steps = MultiplicativePersistence(data.getNumber());
 
-   if(steps > highest){
-      data.addNumber(data.getNumber());
-      highest = steps;
-   }
+    if (steps > highest) {
+        data.addNumber(data.getNumber());
+        highest = steps;
+    }
 
-   data.numberAddOne();
+    data.numberAddOne();
 }
