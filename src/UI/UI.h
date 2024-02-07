@@ -71,6 +71,8 @@ private:
     // All windows
     std::vector<ImguiWindow *> windows;
 
+    // Font available
+    bool fontAvailable = false;
 };
 
 #endif //MULTIPLICATIVEPERSISTENCE_UI_H

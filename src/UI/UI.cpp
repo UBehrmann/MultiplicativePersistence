@@ -4,6 +4,7 @@
 
 #include "UI.h"
 #include <stdexcept>
+#include <filesystem>
 #include "Windows/MainWindow.h"
 #include "Windows/MP_Window.h"
 
@@ -36,7 +37,10 @@ int UI::init(const char *windowTitle) {
 
     io.Fonts->AddFontDefault();
 
-    ImGui::GetIO().Fonts->AddFontFromFileTTF("./fonts/Roboto/Roboto-Regular.ttf", 24.0f);
+    if (std::filesystem::exists("./fonts/Roboto/Roboto-Regular.ttf")) {
+        fontAvailable = true;
+        ImGui::GetIO().Fonts->AddFontFromFileTTF("./fonts/Roboto/Roboto-Regular.ttf", 24.0f);
+    }
 
     ImGui_ImplGlfw_InitForOpenGL(_window, true);
 
@@ -70,13 +74,13 @@ void UI::newFrame() {
 
 void UI::Update() {
 
-    ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[1]);
+    if (fontAvailable) ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[1]);
 
     // Update all windows
     for (auto &window: windows)
         window->update(reinterpret_cast<bool *>(true));
 
-    ImGui::PopFont();
+    if (fontAvailable) ImGui::PopFont();
 }
 
 void UI::Render() {
