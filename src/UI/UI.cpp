@@ -10,6 +10,9 @@
 
 int UI::init(const char *windowTitle) {
 
+    // Force X11 backend to avoid Wayland/GTK issues on some systems
+    glfwInitHint(GLFW_PLATFORM, GLFW_PLATFORM_X11);
+
     if (!glfwInit())
         return 1;
 

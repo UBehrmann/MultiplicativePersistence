@@ -5,7 +5,7 @@
 #ifndef MULTIPLICATIVEPERSISTENCE_MP_WINDOW_H
 #define MULTIPLICATIVEPERSISTENCE_MP_WINDOW_H
 
-#include "../src/Data/DataManagement.h"
+#include "../../Data/DataManagement.h"
 #include "ImguiWindow.h"
 #include "imgui.h"
 

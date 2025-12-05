@@ -4,31 +4,19 @@ project(MultiplicativePersistence)
 
 set(CMAKE_CXX_STANDARD 20)
 
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++ -static-libgcc -static")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++ -static-libgcc")
 
 set(PROJECT_NAME MultiplicativePersistence)
 
-set(IMGUI_FILES
-        imgui/imconfig.h
-        imgui/imgui.cpp
-        imgui/imgui.h
-        imgui/imgui_demo.cpp
-        imgui/imgui_draw.cpp
-        imgui/imgui_internal.h
-        imgui/imgui_tables.cpp
-        imgui/imgui_widgets.cpp
-        imgui/imstb_rectpack.h
-        imgui/imstb_textedit.h
-        imgui/imstb_truetype.h
-        imgui/backends/imgui_impl_glfw.cpp
-        imgui/backends/imgui_impl_glfw.h
-        imgui/backends/imgui_impl_opengl3.cpp
-        imgui/backends/imgui_impl_opengl3.h
+# ImGui backend files (still need to compile these)
+set(IMGUI_BACKEND_FILES
+        imgui_backends/imgui_impl_glfw.cpp
+        imgui_backends/imgui_impl_opengl3.cpp
 )
 
 add_executable(${PROJECT_NAME}
         src/main.cpp
-        ${IMGUI_FILES}
+        ${IMGUI_BACKEND_FILES}
         src/MP/MultiplicativePersistence.cpp
         src/MP/MultiplicativePersistence.h
         src/UI/ConsoleOuput/ConsoleOutput.cpp
@@ -51,22 +39,25 @@ add_executable(${PROJECT_NAME}
 
 #ImGui and GLFW integration
 find_package( OpenGL REQUIRED )
+find_package( glfw3 REQUIRED )
 
 include_directories( ${OPENGL_INCLUDE_DIRS} )
 
-add_subdirectory( glfw )
+# ImGui library (manually installed)
+find_library(IMGUI_LIBRARY imgui PATHS /usr/local/lib REQUIRED)
+find_path(IMGUI_INCLUDE_DIR imgui.h PATHS /usr/local/include REQUIRED)
 
 target_include_directories( ${PROJECT_NAME}
         PRIVATE
-        ${PROJECT_SOURCE_DIR}/imgui
-        ${PROJECT_SOURCE_DIR}/imgui/backends
-        ${PROJECT_SOURCE_DIR}/glfw/include/GLFW
+        ${IMGUI_INCLUDE_DIR}
+        ${IMGUI_INCLUDE_DIR}/backends
 )
 
 target_link_libraries(${PROJECT_NAME}
         PRIVATE
-        opengl32
+        OpenGL::GL
         glfw
+        ${IMGUI_LIBRARY}
 )
 
 add_executable(

@@ -4,7 +4,10 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <climits>
+#ifdef _WIN32
 #include <windows.h>
+#endif
 #include "ConsoleOutput.h"
 
 using namespace std;
@@ -34,11 +37,15 @@ void showStage(MultiPers number, vector<MultiPers> numbers) {
 }
 
 void setScreenPosition(size_t x, size_t y) {
-
+#ifdef _WIN32
     COORD cursorPosition;
 
     cursorPosition.X = (short) x;
     cursorPosition.Y = (short) y;
 
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPosition);
+#else
+    // ANSI escape codes for Linux/Unix
+    std::cout << "\033[" << y << ";" << x << "H";
+#endif
 }

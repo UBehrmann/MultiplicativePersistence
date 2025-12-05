@@ -18,8 +18,50 @@ This means if the next number isn't in the ullong_max range, I will have to chan
 
 # Need to run the code
 
-- dear imgui in the same directory as the code
-- GLFW in the same directory as the code
+## Linux
+
+### Prerequisites
+
+Install the required dependencies:
+
+```bash
+sudo apt-get update
+sudo apt-get install -y \
+    build-essential \
+    cmake \
+    libgl-dev \
+    libglu1-mesa-dev \
+    libxrandr-dev \
+    libxinerama-dev \
+    libxcursor-dev \
+    libxi-dev \
+    libxxf86vm-dev \
+    libglfw3-dev
+```
+
+Install ImGui library locally (if not already installed):
+- Download and build ImGui from https://github.com/ocornut/imgui
+- Install to `/usr/local/lib` and `/usr/local/include`
+
+### Build
+
+```bash
+cmake -B cmake-build-debug -S .
+cmake --build cmake-build-debug --target MultiplicativePersistence -j$(nproc)
+```
+
+### Run
+
+```bash
+./cmake-build-debug/MultiplicativePersistence
+```
+
+**Note:** On systems using Wayland, if you encounter GTK or libdecor errors, the application automatically forces X11 backend for compatibility.
+
+## Windows
+
+- dear imgui library installed locally
+- GLFW library installed locally
 
 # To do
 
